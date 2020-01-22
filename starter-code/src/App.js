@@ -13,19 +13,18 @@ class App extends Component {
       contacts
     };
   }
-  genereteFiveContacts = () => {
-    let table = []
-
-    // Outer loop to create parent
-    for (let i = 0; i < 5; i += 1) {
+  genereteRandomContacts(){
+    console.log("RAPAAAAZZZ");
+    let table = [];
+    let randomNumber = Math.floor(Math.random() * (this.state.contacts.length + 1));
       let column = []
-        column.push(<td><img src={this.state.contacts[i].pictureUrl} alt={this.state.contacts[i].name} width="100" height="150"/></td>);
-        column.push(<td><h2 style={{ color: "green" }}>{this.state.contacts[i].name}</h2></td>);
-        column.push(<td>{this.state.contacts[i].popularity.toFixed(2)}</td>);
+        column.push(<td><img src={this.state.contacts[randomNumber].pictureUrl} alt={this.state.contacts[randomNumber].name} width="100" height="150"/></td>);
+        column.push(<td><h2 style={{ color: "green" }}>{this.state.contacts[randomNumber].name}</h2></td>);
+        column.push(<td>{this.state.contacts[randomNumber].popularity.toFixed(2)}</td>);
         column.push(<td>{/* <button onClick={() => clickHandler(teste.itemValue)}> */}BUTTON{/* </button> */}</td>);
       table.push(<tr>{column}</tr>)
-    }
     return table
+    
   }
   render() {
     return (
@@ -36,14 +35,12 @@ class App extends Component {
         </header>
         <div>
           <ContactList
-            contactName={this.state.contacts[1].id}
+            allContacts={this.state.contacts}
+            genereteRandomContacts={this.state.contacts}
             >
           </ContactList>
-            {this.genereteFiveContacts()}
+            {/* {this.genereteFiveContacts()} */}
         </div>
-        {/* <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p> */}
       </div>
     );
   }
